@@ -1,3 +1,4 @@
+import os
 import sys
 
 
@@ -15,12 +16,15 @@ def fib(n, k):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("python rabbit_fib.py n k")
+        print("python 004_fib_rabbit n k")
         print("\tn = number of months")
         print("\tk = number of rabbit pairs")
+        sys.exit(-1)
     n = int(sys.argv[1])
     k = int(sys.argv[2])
     result = fib(n, k)
     print(result)
-    with open("output.txt", "w") as output_file:
-        output_file.write(result)
+
+    output_path = os.path.join(os.path.dirname(__file__), "output.txt")
+    with open(output_path, "w") as output_file:
+        output_file.write(str(result))

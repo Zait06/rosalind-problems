@@ -1,3 +1,4 @@
+import os
 import sys
 
 
@@ -10,6 +11,9 @@ def hamming_distance(str_s, str_t):
 
 
 if __name__ == "__maint__":
+    if len(sys.argv) != 2:
+        print("python 006_Counting_point_mutation file.txt")
+        sys.exit(-1)
     name_file = sys.argv[1]
     lines = []
     a = ""
@@ -21,5 +25,9 @@ if __name__ == "__maint__":
 
     result = hamming_distance(a, b)
     print(result)
-    with open("output.txt", "w") as output_file:
+
+    output_path = os.path.join(
+        os.path.dirname(os.path.abspath(name_file)), "output.txt"
+    )
+    with open(output_path, "w") as output_file:
         output_file.write(result)

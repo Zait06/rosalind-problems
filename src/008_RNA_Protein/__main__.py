@@ -1,3 +1,4 @@
+import os
 import sys
 
 RNA_CONDON_TABLE = {
@@ -73,6 +74,10 @@ def split_string_into_n_characters(input_string, n):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("python 008_RNA_Protein file.txt")
+        sys.exit(-1)
+
     n = 3
     sp = []
 
@@ -91,5 +96,9 @@ if __name__ == "__main__":
 
     result = "".join(sp)
     print(result)
-    with open("output.txt", "w") as output_file:
+
+    output_path = os.path.join(
+        os.path.dirname(os.path.abspath(name_file)), "output.txt"
+    )
+    with open(output_path, "w") as output_file:
         output_file.write(result)

@@ -1,3 +1,4 @@
+import os
 import sys
 import copy
 
@@ -28,6 +29,9 @@ def dna_reverse(dna):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("python 005_GC_contente file.txt")
+        sys.exit(-1)
     name_file = sys.argv[1]
     dna_str = ""
     name = ""
@@ -48,15 +52,19 @@ if __name__ == "__main__":
         gc_dict = count_string(dna_str)
         all_gc_content[name[1:-1]] = gc_content(gc_dict)
 
-        max_val = 0
-        key_max = ""
-        for key in all_gc_content.keys():
-            value = all_gc_content[key]
-            print(key, value)
-            if max_val < value:
-                key_max = key
-                max_val = value
-        result = f"{key_max}\n{max_val}"
-        print(result)
-        with open("output.txt", "w") as output_file:
-            output_file.write(result)
+    max_val = 0
+    key_max = ""
+    for key in all_gc_content.keys():
+        value = all_gc_content[key]
+        print(key, value)
+        if max_val < value:
+            key_max = key
+            max_val = value
+    result = f"{key_max}\n{max_val}"
+    print(result)
+
+    output_path = os.path.join(
+        os.path.dirname(os.path.abspath(name_file)), "output.txt"
+    )
+    with open(output_path, "w") as output_file:
+        output_file.write(result)
